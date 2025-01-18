@@ -11,12 +11,12 @@
 
     <!-- Microsoft clarity script -->
     <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "l14nr1ls8o");
-    </script> 
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "l14nr1ls8o");
+    </script>
 </head>
 
 <body>
@@ -61,9 +61,10 @@
     <div id="editEmployeePopup" class="popup">
         <!-- Close button for the popup -->
         <span class="close" id="EditEmployeePopup">&times;</span>
+        <span></span>
         <!-- Popup title -->
         <h2>Edit Employee Detail</h2>
-
+    
         <!-- Form fields for editing an existing employee -->
         <div>
             <label for="editName">Name:</label>
@@ -81,9 +82,15 @@
             <label for="editDesignation">Designation:</label>
             <input type="text" id="editDesignation" />
         </div>
-        <!-- Button to save the edited employee details -->
-        <button class="btn-AddEmployee" id="saveEditedEmployee">Save Changes</button>
+
+        
+    
+        <!-- Buttons to save the edited employee details and delete the employee -->
+        <div class="button-container">
+            <button class="btn-AddEmployee" id="saveEditedEmployee">Save Changes</button>
+        </div>
     </div>
+    
 
     <!-- View Employee Popup -->
     <div id="viewEmployeePopup" class="popup">
@@ -91,6 +98,13 @@
         <span class="close" id="EditTogglePopup">&times;</span>
         <!-- Popup title -->
         <h2>View All Employee Details</h2>
+
+        <!-- Search input for filtering employee records -->
+        <div class="search-container">
+            <label for="searchEmployee">Search Employee:</label>
+            <input type="text" id="searchEmployee" placeholder="Search by Name, Employee ID, or Designation" />
+        </div>
+        
         <!-- Table to display all employee details -->
         <table id="employeeTable">
             <thead>
@@ -105,6 +119,7 @@
             <tbody id="employeeList"></tbody>
         </table>
     </div>
+
 
     <!-- Overlay to close popups -->
     <div class="overlay" id="overlayPopup"></div>
