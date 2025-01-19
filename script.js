@@ -187,12 +187,26 @@ function viewEmployees() {
             <td>${employee.address}</td>
             <td>${employee.employeeId}</td>
             <td>${employee.designation}</td>
-            <td><button onclick="editEmployee(${index})">Edit</button></td>
+            <td>
+                <button onclick="editEmployee(${index})">Edit</button>
+                <button onclick="deleteEmployee(${index})">Delete</button>
+            </td>
         `;
         employeeList.appendChild(row);
     });
     togglePopup("viewEmployeePopup");
 }
+
+function deleteEmployee(index) {
+    // Display confirmation dialog
+    let confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+    if (confirmDelete) {
+        employees.splice(index, 1);
+        // Update the table
+        viewEmployees();
+    }
+}
+
 
 // Display toast messages
 function showToast(message, color = "red") {
