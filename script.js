@@ -187,12 +187,26 @@ function viewEmployees() {
             <td>${employee.address}</td>
             <td>${employee.employeeId}</td>
             <td>${employee.designation}</td>
-            <td><button onclick="editEmployee(${index})">Edit</button></td>
+            <td>
+                <button onclick="editEmployee(${index})">Edit</button>
+                <button onclick="deleteEmployee(${index})">Delete</button>
+            </td>
         `;
         employeeList.appendChild(row);
     });
     togglePopup("viewEmployeePopup");
 }
+
+function deleteEmployee(index) {
+    // Display confirmation dialog
+    let confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+    if (confirmDelete) {
+        employees.splice(index, 1);
+        // Update the table
+        viewEmployees();
+    }
+}
+
 
 // Display toast messages
 function showToast(message, color = "red") {
@@ -214,3 +228,32 @@ function showToast(message, color = "red") {
 //         document.getElementById("addEmployee").click(); // Trigger click event of "Add Employee" button
 //     }
 // });
+
+// Get the search input field and employee list table
+const searchInput = document.getElementById("searchEmployee");
+const employeeList = document.getElementById("employeeList");
+
+//  input change (search)
+searchInput.addEventListener("input", function() {
+    const searchQuery = searchInput.value.toLowerCase();
+
+    // Loop through the employee list rows and hide those that don't match the search
+    const rows = employeeList.getElementsByTagName("tr");
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const columns = row.getElementsByTagName("td");
+        const name = columns[0].textContent.toLowerCase();
+        const address = columns[1].textContent.toLowerCase();
+        const employeeId = columns[2].textContent.toLowerCase();
+        const designation = columns[3].textContent.toLowerCase();
+
+        // Check if any column matches the search query
+        if (name.includes(searchQuery) || address.includes(searchQuery) || employeeId.includes(searchQuery) || designation.includes(searchQuery)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+});
+
+
